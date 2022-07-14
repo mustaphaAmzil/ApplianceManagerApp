@@ -1,0 +1,109 @@
+
+<!--
+<mat-toolbar >
+    <mat-toolbar-row>
+        <button mat-icon-button>
+            <mat-icon (click)="sidenav.toggle();">menu</mat-icon>
+        </button>
+         <h1>Menu</h1>
+    </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav >
+        <mat-nav-list   >
+            <a mat-list-item  class="lost">Acceuil</a>
+            <a mat-list-item class="lost">Gestion des clients</a>
+            <a mat-list-item class="lost">Gestion des contacts</a>
+            <a mat-list-item class="lost">Gestion des appliance</a>
+           <a mat-list-item class="lost" >Gestion des types d'appliances</a>
+           <a mat-list-item  class="lost">Gestion des sceances</a>
+           <a mat-list-item  class="lost">Gestion des suivis</a>
+           <a mat-list-item  class="lost">Gestion des types de prestations</a>
+        </mat-nav-list>
+    </mat-sidenav>
+   <mat-sidenav-container>
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/6.1.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/6.1.1/css/font-awesome.min.css" rel="stylesheet">
+
+    </head>
+    <body>
+      
+<div style="height: 2px; float: right;" class="container"  >
+    
+    <ul class="nav nav-pills" *ngIf="authService.isAuthenticated2()">       
+      <li>
+        <a style="margin-left: 920px; margin-top: 15px; background-color: rgb(231, 71, 71); color: azure; padding-bottom: 15px;" class="btn btn-info btn-lg"   (click)="onLogout()" class="glyphicon glyphicon-log-out" > Déconnexion
+        
+      </a>
+    </li>
+    </ul>
+    <ul class="nav nav-pills" >
+      
+     </ul>  
+
+  </div>
+  <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+
+
+    <div class="main_content">
+
+        <div class="logo ">            
+        </div>  
+       <router-outlet>
+        <div class="wrapper" *ngIf="authService.isAuthenticated2()">
+          <div class="sidebar">
+            <img   class="imgstyles"  src="../assets/images/logo.png"  alt="logo appliance"><br><br>
+              
+              <ul    >
+                <li><a routerLinkActive="active" routerLink="/home" ><i class="fas fa-home"></i>Home</a></li>
+                <li><a routerLinkActive="active" routerLink="/profil"   ><i class="fa fa-user"></i> Profil</a></li>
+                <ul *ngIf="authService.isAdmin()">
+                  <li><a routerLinkActive="active" routerLink="/client"    ><i class="fa fa-users"></i> Clients</a></li> 
+                  <li><a  routerLinkActive="active" routerLink="/contact"  ><i class="fas fa-address-book"></i>Contacts</a></li>
+                  <li><a routerLinkActive="active" routerLink="/appliance"   ><i class="fas fa-server"></i>Appliances</a></li>
+                  <li><a routerLinkActive="active" routerLink="/typeAppliance"   ><i class="fas fa-project-diagram"></i>Type d'appliances </a></li>
+                  <li><a routerLinkActive="active" routerLink="/typePrestation"  ><i class="fas fa-chart-bar"></i>Types de prestations</a></li>
+                </ul>
+                  <ul *ngIf="authService.isManager()" >  
+                    
+                    <li><a  routerLinkActive="active" routerLink="/pov"><i class="fas fa-tasks"></i>Povs</a></li>
+                    <li><a  routerLinkActive="active" routerLink="/suivi"><i class="fas fa-file-import"></i>Suivis</a></li>
+                    <li><a  routerLinkActive="active" routerLink="/sceance"><i class="fas fa-calendar-day"></i>Seances</a></li>
+                  </ul>
+                  <ul *ngIf="authService.isSuperAdmin()">
+                    <li><a routerLinkActive="active" routerLink="/user"    ><i class="fa fa-users"></i> Utilisateurs</a></li> 
+                    <li><a routerLinkActive="active" routerLink="/client"    ><i class="fa fa-users"></i> Clients</a></li> 
+                    <li><a  routerLinkActive="active" routerLink="/contact"  ><i class="fas fa-address-book"></i>Contacts</a></li> 
+                    <li><a routerLinkActive="active" routerLink="/appliance"   ><i class="fas fa-server"></i>Appliances</a></li>
+                    <li><a  routerLinkActive="active" routerLink="/pov"><i class="fas fa-tasks"></i>Povs</a></li>
+                    <li><a  routerLinkActive="active" routerLink="/suivi"><i class="fas fa-file-import"></i>Suivis</a></li>
+                    <li><a  routerLinkActive="active" routerLink="/sceance"><i class="fas fa-calendar-day"></i>Seances</a></li>
+                    <li><a routerLinkActive="active" routerLink="/typeAppliance"   ><i class="fas fa-project-diagram"></i>Type d'appliances </a></li>
+                    <li><a routerLinkActive="active" routerLink="/typePrestation"  ><i class="fas fa-chart-bar"></i>Types de prestations</a></li>
+                  </ul>
+              </ul> 
+              <div class="social_media">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+          </div>
+          </div>
+    </router-outlet>
+    </div>
+    </body>
+</html>
